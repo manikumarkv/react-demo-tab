@@ -11,6 +11,11 @@ export default class AppSidebar extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newVal) {
+         
+        console.log('props', this.props, newVal)
+    }
+
     buttonClicked = () => {
         this.setState({
             something: !this.state.something
@@ -20,7 +25,7 @@ export default class AppSidebar extends React.Component {
     }
 
     render() {
-        return <button onClick={this.buttonClicked}>click me {this.props.title}</button>
+        return <div >click me {this.props.title}</div>
     }
 }
 
