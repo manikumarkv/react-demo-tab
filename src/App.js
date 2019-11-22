@@ -1,8 +1,8 @@
 import React from 'react';
-// import logo from './logo.svg';
-import AppHeader from './components/AppHeader'
 import './components/AppHeader.css';
 import AppSidebar from './components/AppSidebar';
+import {connect} from 'react-redux';
+import {updateUsers,updateSelectedUser, clearStore} from './actions'
 import AppContainer from './components/AppContainer';
 
 class App extends React.Component {
@@ -27,25 +27,32 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.users)
    
     return (
       <div className="headerContainer">
-        {/* <AppHeader  >          
-          <h1>hello html 12121212</h1>
-        </AppHeader> */}
-        <button onClick={this.updateTitle}>
-          app button
-        </button>
-        <AppSidebar title={this.title} doSomething={this.doSomethingOnChildAction}></AppSidebar>
-      {/* <AppContainer></AppContainer> */}
+       
+       {this.props.users.map((user, index) => {
+       return (<div key={index}>{user.name}</div>)
+       })}
+       <AppContainer></AppContainer>
+      <div>{this.props.user.name}</div>
       </div>
     );
   }
 }
 
 
+const mapStateToProps = (uStore) => ({
+  users: uStore.users,
+  user:uStore.selectedUser
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   updatXYZ: (users) => dispatch(updateUsers(users)),
+//   decreaseAction: () => dispatch(decreaseAction()),
+// }); 
 
 
-
-export default App;
+export default connect(mapStateToProps, null)(App);
 
