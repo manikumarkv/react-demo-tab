@@ -28,26 +28,40 @@ class App extends React.Component {
 
     return (
       <Router>
+
         <div>
+        <ul>
+          <li>
+            <Link to="/">Login</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+            <ul>
+              <li>
+              <Link to="/about/admin">Admin</Link>
+              </li>
+              <li>
+              <Link to="/about/manager">Manager</Link>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
 
           <Switch>
-            
-            <Route exact path="/login">
+
+            <Route path="/login">
               <LoginPage />
             </Route>
-            <Route path="/login/about">
-              <AboutPage />
+            
+            <Route path="/about" component={AboutPage} >
+             
             </Route>
-            <Route path="/login/dsg">
-              <AboutPage />
-            </Route>
-
-
-
-
             <Route path="/">
               <LoginPage />
             </Route>
+
+
           </Switch>
         </div>
       </Router>
