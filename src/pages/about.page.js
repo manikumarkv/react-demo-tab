@@ -11,7 +11,17 @@ export default class AboutPage extends React.Component {
 
             <Switch>
                 <Route path="/about/admin">
-                    <div>this is admin page</div>
+                    <Switch>
+                        <Route path="/about/admin/site">
+                            <div>this is site admin page</div>
+                        </Route>
+                        <Route path="/about/admin/super">
+                            <div>this is super admin page</div>
+                        </Route>
+                        <Route path="/about/admin">
+                            <div>this is normal admin page</div>
+                        </Route>
+                    </Switch>
                 </Route>
 
                 <Route path="/about/manager">

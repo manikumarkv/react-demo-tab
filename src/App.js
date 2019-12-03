@@ -13,8 +13,32 @@ import {
   Switch,
   Route,
   Link,
-  NavLink
+  NavLink,
+  Redirect
 } from "react-router-dom";
+import NotFoundPage from './pages/notFound.page';
+
+function isUserLoggedIn() {
+  return localStorage.getItem('isLoggedIn') === 'true';
+}
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isUserLoggedIn() ? (
+          children
+        ) : (
+            <Redirect
+              to={{
+                pathname: "/login"
+              }}
+            />
+          )
+      }
+    />
+  );
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -30,36 +54,48 @@ class App extends React.Component {
       <Router>
 
         <div>
-        <ul>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-            <ul>
-              <li>
-              <Link to="/about/admin">Admin</Link>
-              </li>
-              <li>
-              <Link to="/about/manager">Manager</Link>
-              </li>
-            </ul>
-          </li>
-          
-        </ul>
+          <ul>
+            <li>
+              <Link to="/">Login</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+              <ul>
+                <li>
+                  <Link to="/about/admin">Admin</Link>
+                  <ul>
+                    <li>
+                      <Link to="/about/admin/super">Super Admin</Link>
+                    </li>
+                    <li>
+                      <Link to="/about/admin/site">Site Admin</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/about/manager">Manager</Link>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
 
           <Switch>
 
             <Route path="/login">
               <LoginPage />
             </Route>
-            
+
             <Route path="/about" component={AboutPage} >
-             
+
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <LoginPage />
             </Route>
+            <PrivateRoute path="/dashboard">
+              <div>dashboard page</div>
+            </PrivateRoute>
+            <Route component={NotFoundPage}></Route>
 
 
           </Switch>
