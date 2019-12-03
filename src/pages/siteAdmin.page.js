@@ -1,9 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
 
-export default class SiteAdminPage extends React.Component {
+function useQuery() {
+    const query= new URLSearchParams(useLocation().search);
+    debugger;
+    return query
+}
 
-    render() {
+export default function SiteAdminPage() {
+    let query = useQuery();
 
-        return <div>this is site admin page </div>
-    }
+    const name = query.get('name')
+    debugger
+return <div>this is site admin page -{name}</div>
+
 }

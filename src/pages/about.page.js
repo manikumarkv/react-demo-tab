@@ -4,6 +4,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import SiteAdminPage from './siteAdmin.page';
 
 export default class AboutPage extends React.Component {
     render() {
@@ -13,7 +14,7 @@ export default class AboutPage extends React.Component {
                 <Route path="/about/admin">
                     <Switch>
                         <Route path="/about/admin/site">
-                            <div>this is site admin page</div>
+                            <SiteAdminPage></SiteAdminPage>
                         </Route>
                         <Route path="/about/admin/super">
                             <div>this is super admin page</div>
