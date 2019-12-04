@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
-import SiteAdminPage from './siteAdmin.page';
-
+// import SiteAdminPage from './siteAdmin.page';
+import SuperAdminPage from './superAdmin.page';
+const SiteAdminPage = React.lazy(() => import('./siteAdmin.page'));
 export default class AboutPage extends React.Component {
     render() {
         return (
@@ -14,10 +15,12 @@ export default class AboutPage extends React.Component {
                 <Route path="/about/admin">
                     <Switch>
                         <Route path="/about/admin/site">
-                            <SiteAdminPage></SiteAdminPage>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <SiteAdminPage />
+                            </Suspense>
                         </Route>
                         <Route path="/about/admin/super">
-                            <div>this is super admin page</div>
+                            <SuperAdminPage></SuperAdminPage>
                         </Route>
                         <Route path="/about/admin">
                             <div>this is normal admin page</div>

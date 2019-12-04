@@ -54,7 +54,7 @@ class App extends React.Component {
       <Router>
 
         <div>
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/">Login</Link>
             </li>
@@ -78,7 +78,7 @@ class App extends React.Component {
               </ul>
             </li>
 
-          </ul>
+          </ul> */}
 
           <Switch>
 

@@ -6,12 +6,17 @@ export default class LoginPage extends React.Component {
         super(props)
     }
     onLogin(){
-        localStorage.setItem("isLoggedIn", "true")
+        //history.push('/logn')
+        //localStorage.setItem("isLoggedIn", "true")
     }
     render() {
         //const {id} = this.props.match.params
         return <div>
             <button onClick={this.onLogin}>Login</button>
-            this is login page id- <Link to="/about">go to about</Link></div>
+            this is login page id- <Link to="/about">go to about</Link>
+            <div>
+            <Link to="/about/admin/site">go to site</Link></div>
+            </div>
+            
     }
 }
