@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store'
+import HocApp from './HocApp';
 //import * as serviceWorker from './serviceWorker';
 const ReduxProvider = () => (
     <Provider store={store}>
@@ -11,7 +12,7 @@ const ReduxProvider = () => (
     </Provider>
   );
 
-ReactDOM.render(<ReduxProvider />, document.getElementById('root'));
+ReactDOM.render(<HocApp></HocApp>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
